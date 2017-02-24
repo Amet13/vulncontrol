@@ -1,0 +1,9 @@
+# https://www.cvedetails.com/product-search.php
+
+https://www.cvedetails.com/product/47/Linux-Linux-Kernel.html
+https://www.cvedetails.com/product/36/Debian-Debian-Linux.html
+https://www.cvedetails.com/product/128/PHP-PHP.html
+https://www.cvedetails.com/product/78/Redhat-Enterprise-Linux.html
+https://www.cvedetails.com/product/21801/Oracle-Mysql.html
+https://www.cvedetails.com/product/383/Openssl-Openssl.html
+https://www.cvedetails.com/product/14577/Citrix-Xenserver.html
