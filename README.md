@@ -57,6 +57,7 @@ curl "https://www.cvedetails.com/json-feed.php?&key1=value1&key2=value2..."
 ```
 
 Custom parameters:
+
 | Key          | Value | Description                                                    |
 | ------------ | ----- | -------------------------------------------------------------- |
 | year         | 2017  | [Year](http://www.cvedetails.com/browse-by-date.php)           |
@@ -69,6 +70,7 @@ Custom parameters:
 | numrows      | 0-30  | Number of rows                                                 |
 
 Boolean parameters (0 by default, 1 - yes):
+
 | Key       | Value | Description                |
 | --------- | ----- | -------------------------- |
 | hasexp    | 0     | Has exploits               |
