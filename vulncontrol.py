@@ -18,7 +18,7 @@ month = datetime.now().strftime('%m')
 try:
 	token = str(argv[1])
 	telegramid = str(argv[2])
-except IndexError:
+except (IndexError):
 	print ('You are not using token and ID for Telegram')
 	token = ''
 	telegramid = ''
@@ -39,7 +39,7 @@ for line in source:
 	if not line.startswith('#') and line.strip():
 		parsed = urlparse(line)
 		path = parsed[2]
-		pathlist = path.split("/")
+		pathlist = path.split('/')
 		ids.append(pathlist[2])
 
 source.close()
@@ -57,12 +57,11 @@ try:
 			try:
 				jsonp = loads(jsonr.decode('utf-8'))[y]
 				if jsonp['publish_date'] == today:
-					result = jsonp['cve_id'] + " " + jsonp['cvss_score'] + " " + jsonp['url']
-					tresult = "CVSS:" + jsonp['cvss_score'] + " URL: " + jsonp['url']
+					result = jsonp['cve_id'] + ' ' + jsonp['cvss_score'] + ' ' + jsonp['url']
+					tresult = 'CVSS:' + jsonp['cvss_score'] + ' URL: ' + jsonp['url']
 					cves.append(result)
 					tcves.append(tresult)
-
-			except IndexError:
+			except (IndexError):
 				break
 except (ValueError, KeyError, TypeError):
 	print ('JSON format error')

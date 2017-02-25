@@ -29,7 +29,7 @@ Second way with Telegram support:
 * go to @BotFather and create `/newbot`, for example `VulncontrolBot`
 * then you have token like `111111111:ABCDE...`
 * after go to @MyTelegramID_bot and `/start` it
-* then you have youe telegram ID like `123456789`
+* then you have your telegram ID like `123456789`
 
 Now you can run script with your data:
 ```
@@ -70,7 +70,7 @@ Exit codes (for monitoring)
 Customizing script
 ------------------
 
-You can customize `result` with more values.
+You can customize `result` with more keys.
 Available keys:
 * `cve_id`
 * `cvss_score`
