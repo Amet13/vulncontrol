@@ -47,7 +47,7 @@ try:
 			except IndexError:
 				break
 except (ValueError, KeyError, TypeError):
-    print ('JSON format error')
+	print ('JSON format error')
 
 print (cves)
 
