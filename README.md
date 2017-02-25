@@ -41,7 +41,7 @@ CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/
 Telegram alert was sent
 $ echo $?
 2
-``
+```
 
 ![](https://raw.githubusercontent.com/Amet13/vulncontrol/master/tscreen.png)
 
@@ -53,10 +53,19 @@ $ echo $?
 0
 ```
 
-Script collects list of software from file and find all vulnerabilities for current date (today).
+Autorun
+-------
 
-Exit codes (for using in monitoring)
-------------------------------------
+You can add script to you monitoring system or cron.
+
+Example for cron:
+```
+$ crontab -e
+* */12 * * * /usr/bin/python3 /path/to/vulncontrol.py
+```
+
+Exit codes (for monitoring)
+---------------------------
 
 | Code | Description                                             |
 | ---- | ------------------------------------------------------- |
@@ -132,7 +141,6 @@ Boolean parameters (0 by default, 1 - yes):
 
 TODO
 ----
-* Integrate with monitoring (Zabbix, Nagios/Icinga2 or cron running with email alert)
 * Log file for vulnerabilities
 * Mark CVE as safety
-* Set parameter in script
+* Use more parameters
