@@ -37,7 +37,6 @@ try:
 		link = feedlink + '?product_id=' + x + '&year=' + year + '&month=' + month
 		# Going to URL and get JSON
 		getjson = urlopen(link)
-		# Do JSON pretty
 		jsonr = getjson.read()
 		for y in range(0, maxrec):
 			try:
