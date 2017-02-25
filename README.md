@@ -5,8 +5,10 @@ Python script for monitoring www.cvedetails.com vulnerabilities database.
 Usage
 -----
 
-Add software what you need to `productlis.txt`.
+Add software what you need to `productlist.txt`.
+
 You can search software here: https://www.cvedetails.com/product-search.php
+
 Then you can run script:
 ```
 $ ./vulncontrol.py
@@ -33,7 +35,7 @@ cvssscoremax=0 # Max CVSS (0 - 10)
 numrows=30 # Number of rows (0 - 30)
 ```
 
-Boolean parameters(0 by default, 1 - yes):
+Boolean parameters (0 by default, 1 - yes):
 ```
 hasexp=0 # Has exploits
 opec=0 # Code execution
