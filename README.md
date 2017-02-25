@@ -61,7 +61,7 @@ Custom parameters:
 | Key          | Value | Description                                                    |
 | ------------ | ----- | -------------------------------------------------------------- |
 | year         | 2017  | [Year](http://www.cvedetails.com/browse-by-date.php)           |
-| month        | 1-12  | [Month](http://www.cvedetails.com/browse-by-date.php)          |
+| month        | 1-12  | Month                                                          |
 | vendor_id    | 33    | [Vendor ID](http://www.cvedetails.com/vendor.php)              |
 | product_id   | 47    | [Product ID](http://www.cvedetails.com/product-list.php)       |
 | orderby      | 1-3   | Sort type (1 - Publish Date, 2 - Last Update Date, 3 - CVE ID) |
