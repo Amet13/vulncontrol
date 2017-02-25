@@ -9,7 +9,7 @@ First go [here](https://www.cvedetails.com/product-search.php), find your softwa
 
 Then you can run script in two ways.
 
-First way:
+First way without Telegram support:
 ```
 $ ./vulncontrol.py
 You are not using token and ID for Telegram
@@ -17,10 +17,7 @@ CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/
 Telegram alert does not sent
 $ echo $?
 1
-```
 
-If all OK:
-```
 $ ./vulncontrol.py
 You are not using token and ID for Telegram
 There is no available vulnerabilities today
@@ -28,7 +25,7 @@ $ echo $?
 0
 ```
 
-Second way with Telegram alert:
+Second way with Telegram support:
 * go to @BotFather and create `/newbot`, for example `VulncontrolBot`
 * then you have token like `111111111:ABCDE...`
 * after go to @MyTelegramID_bot and `/start` it
@@ -36,6 +33,11 @@ Second way with Telegram alert:
 
 Now you can run script with your data:
 ```
+$ ./vulncontrol.py 111111111:ABCDE 123456789
+There is no available vulnerabilities today
+$ echo $?
+0
+
 $ ./vulncontrol.py 111111111:ABCDE 123456789
 CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/
 Telegram alert was sent
@@ -45,18 +47,10 @@ $ echo $?
 
 ![](https://raw.githubusercontent.com/Amet13/vulncontrol/master/tscreen.png)
 
-If all OK:
-```
-$ ./vulncontrol.py 111111111:ABCDE 123456789
-There is no available vulnerabilities today
-$ echo $?
-0
-```
-
 Autorun
 -------
 
-You can add script to you monitoring system or cron.
+You can add script to you monitoring system (like Nagios/Icinga2, Zabbix, etc) or cron.
 
 Example for cron:
 ```
