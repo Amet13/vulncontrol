@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 __author__ = 'Amet13'
 
-from sys import exit
+from sys import exit, argv
 from datetime import datetime
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urlencode
 from urllib.request import urlopen
 from json import loads, dumps
 
@@ -14,8 +14,21 @@ today = datetime.now().strftime('%Y-%m-%d')
 year = datetime.now().strftime('%Y')
 month = datetime.now().strftime('%m')
 
+# Telegram things
+try:
+	token = str(argv[1])
+	telegramid = str(argv[2])
+except IndexError:
+	print ('You are not using token and ID for Telegram')
+	token = ''
+	telegramid = ''
+
+turl = 'https://api.telegram.org/bot'
+tfull = turl + token + '/sendMessage'
+
 ids = [] # Array for product IDs
 cves = [] # Array for results
+tcves = [] # Array for Telegram results
 
 numrows = 10 # Maximum rows for one product
 feedlink = 'https://www.cvedetails.com/json-feed.php'
@@ -45,21 +58,27 @@ try:
 				jsonp = loads(jsonr.decode('utf-8'))[y]
 				if jsonp['publish_date'] == today:
 					result = jsonp['cve_id'] + " " + jsonp['cvss_score'] + " " + jsonp['url']
+					tresult = "CVSS:" + jsonp['cvss_score'] + " URL: " + jsonp['url']
 					cves.append(result)
+					tcves.append(tresult)
+
 			except IndexError:
 				break
 except (ValueError, KeyError, TypeError):
 	print ('JSON format error')
+
+# Getting data for Telegram
+tparams = urlencode({'chat_id': telegramid, 'text': tcves}).encode('utf-8')
 
 if len(cves) == 0:
 	print ('There is no available vulnerabilities today')
 	exit(0)
 else:
 	print (*cves)
-	exit(1)
-
-# Output:
-# $ ./vulncontrol.py
-# CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/
-# $ echo $?
-# 1
+	if token == '' or telegramid == '':
+		print ('Telegram alert does not sent')
+		exit(1)
+	else:
+		urlopen(tfull, tparams)
+		print ('Telegram alert was sent')
+		exit(2)

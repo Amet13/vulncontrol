@@ -7,22 +7,62 @@ Usage
 
 First go [here](https://www.cvedetails.com/product-search.php), find your software and add links to `productlist.txt`.
 
-Then you can run script:
+Then you can run script in two ways.
+
+First way:
 ```
 $ ./vulncontrol.py
+You are not using token and ID for Telegram
 CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/
+Telegram alert does not sent
 $ echo $?
 1
 ```
+
 If all OK:
 ```
 $ ./vulncontrol.py
+You are not using token and ID for Telegram
+There is no available vulnerabilities today
+$ echo $?
+0
+```
+
+Second way with Telegram alert:
+* go to @BotFather and create `/newbot`, for example `VulncontrolBot`
+* then you have token like `111111111:ABCDE...`
+* after go to @MyTelegramID_bot and `/start` it
+* then you have youe telegram ID like `123456789`
+
+Now you can run script with your data:
+```
+$ ./vulncontrol.py 111111111:ABCDE 123456789
+CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/
+Telegram alert was sent
+$ echo $?
+2
+``
+
+![](https://raw.githubusercontent.com/Amet13/vulncontrol/master/tscreen.png)
+
+If all OK:
+```
+$ ./vulncontrol.py 111111111:ABCDE 123456789
 There is no available vulnerabilities today
 $ echo $?
 0
 ```
 
 Script collects list of software from file and find all vulnerabilities for current date (today).
+
+Exit codes (for using in monitoring)
+------------------------------------
+
+| Code | Description                                             |
+| ---- | ------------------------------------------------------- |
+| 0    | There is no available vulnerabilities today             |
+| 1    | Vulnerabilities available, Telegram alert does not sent |
+| 2    | Vulnerabilities available, Telegram alert was sent      |
 
 Customizing script
 ------------------
@@ -37,14 +77,6 @@ Available keys:
 * `summary`
 * `update_date`
 * `url`
-
-For example:
-```
-result = jsonp['cve_id'] + " " + jsonp['cvss_score'] + " " + jsonp['url'] + " " + jsonp['summary'] + " " + jsonp['exploit_count']
-
-$ ./vulncontrol.py
-CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/ The do_shmat function in ipc/shm.c in the Linux kernel through 4.9.12 does not restrict the address calculated by a certain rounding operation, which allows local users to map page zero, and consequently bypass a protection mechanism that exists for the mmap system call, by making crafted shmget and shmat system calls in a privileged context. 0
-```
 
 Example of JSON-output:
 ```
@@ -104,5 +136,3 @@ TODO
 * Log file for vulnerabilities
 * Mark CVE as safety
 * Set parameter in script
-* Interactive mode
-* Telegram alert (if monitoring does not using)
