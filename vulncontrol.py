@@ -1,21 +1,23 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 __author__ = 'Amet13'
-#import os
+
 from datetime import datetime
 from urllib.parse import urlparse
 from urllib.request import urlopen
 from json import loads, dumps
-#import re
-#import json
-#import urllib2
 
 feedlink = 'https://www.cvedetails.com/json-feed.php'
-#today = datetime.now().strftime('%Y-%m-%d')# Date format 2017-01-31
+
+# Date format: 2017-01-31
+today = datetime.now().strftime('%Y-%m-%d')
 year = datetime.now().strftime('%Y')
 month = datetime.now().strftime('%m')
 source = open('productlist.txt', 'r')
-ids = [] # Array for Product IDs
+maxrec = 10 # Maximum records of one product
+
+ids = [] # Array for product IDs
+cves = [] # Array for results
 
 # Getting Product IDs from file
 for line in source:
@@ -27,21 +29,29 @@ for line in source:
 
 source.close()
 
-# Get JSON for out products by current year and month
+# Get JSON for out products today
 try:
 	for x in ids:
-		#x = '47'
-		# Link example
+		# Link example:
 		# https://www.cvedetails.com/json-feed.php?product_id=47&year=2017&month=02
 		link = feedlink + '?product_id=' + x + '&year=' + year + '&month=' + month
 		# Going to URL and get JSON
 		getjson = urlopen(link)
 		# Do JSON pretty
-		jsonout = getjson.read().decode('utf-8')
-		jsonparsed = loads(jsonout)
-		print (dumps(jsonparsed, sort_keys=True, indent=4))
-
+		jsonr = getjson.read()
+		for y in range(0, maxrec):
+			try:
+				jsonp = loads(jsonr.decode('utf-8'))[y]
+				if jsonp['publish_date'] == today:
+					result = jsonp['cve_id'] + " " + jsonp['cvss_score'] + " " + jsonp['url']
+					cves.append(result)
+			except IndexError:
+				break
 except (ValueError, KeyError, TypeError):
     print ('JSON format error')
 
-#print (today)
+print (cves)
+
+# Output:
+# $ ./vulncontrol.py
+# ['CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/']
