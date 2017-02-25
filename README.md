@@ -5,9 +5,7 @@ Python script for monitoring www.cvedetails.com vulnerabilities database.
 Usage
 -----
 
-Add software what you need to `productlist.txt`.
-
-You can search software here: https://www.cvedetails.com/product-search.php
+First go [here](https://www.cvedetails.com/product-search.php), find your software and add links to `productlist.txt`.
 
 Then you can run script:
 ```
@@ -16,8 +14,18 @@ CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/
 $ echo $?
 1
 ```
+If all OK:
+```
+$ ./vulncontrol.py
+There is no available vulnerabilities today
+$ echo $?
+0
+```
 
 Script collects list of software from file and find all vulnerabilities for current date (today).
+
+Customizing script
+------------------
 
 You can customize `result` with more values.
 Available keys:

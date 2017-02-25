@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 __author__ = 'Amet13'
 
-import sys
+from sys import exit
 from datetime import datetime
 from urllib.parse import urlparse
 from urllib.request import urlopen
@@ -53,11 +53,13 @@ except (ValueError, KeyError, TypeError):
 
 if len(cves) == 0:
 	print ('There is no available vulnerabilities today')
-	sys.exit(0)
+	exit(0)
 else:
 	print (*cves)
-	sys.exit(1)
+	exit(1)
 
 # Output:
 # $ ./vulncontrol.py
 # CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/
+# $ echo $?
+# 1
