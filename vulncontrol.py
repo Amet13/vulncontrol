@@ -60,4 +60,4 @@ else:
 
 # Output:
 # $ ./vulncontrol.py
-# ['CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/']
+# CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/

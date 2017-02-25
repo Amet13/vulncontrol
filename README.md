@@ -12,7 +12,9 @@ You can search software here: https://www.cvedetails.com/product-search.php
 Then you can run script:
 ```
 $ ./vulncontrol.py
-['CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/']
+CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/
+$ echo $?
+1
 ```
 
 Script collects list of software from file and find all vulnerabilities for current date (today).
@@ -33,7 +35,7 @@ For example:
 result = jsonp['cve_id'] + " " + jsonp['cvss_score'] + " " + jsonp['url'] + " " + jsonp['summary'] + " " + jsonp['exploit_count']
 
 $ ./vulncontrol.py
-['CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/ The do_shmat function in ipc/shm.c in the Linux kernel through 4.9.12 does not restrict the address calculated by a certain rounding operation, which allows local users to map page zero, and consequently bypass a protection mechanism that exists for the mmap system call, by making crafted shmget and shmat system calls in a privileged context. 0']
+CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/ The do_shmat function in ipc/shm.c in the Linux kernel through 4.9.12 does not restrict the address calculated by a certain rounding operation, which allows local users to map page zero, and consequently bypass a protection mechanism that exists for the mmap system call, by making crafted shmget and shmat system calls in a privileged context. 0
 ```
 
 Example of JSON-output:
