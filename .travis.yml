@@ -10,4 +10,4 @@ env:
 script:
   - cd $TRAVIS_BUILD_DIR
   - ./vulncontrol.py
-  - ./vulncontrol.py $TOKEN $ID
+  - ./vulncontrol.py -t $TOKEN -i $ID

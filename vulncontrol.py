@@ -6,7 +6,9 @@ from sys import exit, argv
 from datetime import datetime
 from urllib.parse import urlparse, urlencode
 from urllib.request import urlopen
+from urllib.error import HTTPError
 from json import loads, dumps
+import argparse
 
 # Date format: 2017-01-31
 today = datetime.now().strftime('%Y-%m-%d')
@@ -14,14 +16,13 @@ today = datetime.now().strftime('%Y-%m-%d')
 year = datetime.now().strftime('%Y')
 month = datetime.now().strftime('%m')
 
-# Telegram things
-try:
-	token = str(argv[1])
-	telegramid = str(argv[2])
-except (IndexError):
-	print ('You are not using token and ID for Telegram')
-	token = ''
-	telegramid = ''
+# Arguments parsing
+parser = argparse.ArgumentParser()
+parser.add_argument ('-t', default='', dest='TOKEN')
+parser.add_argument ('-i', default='', dest='ID')
+namespace = parser.parse_args()
+token = namespace.TOKEN
+telegramid = namespace.ID
 
 turl = 'https://api.telegram.org/bot'
 tfull = turl + token + '/sendMessage'
@@ -76,9 +77,13 @@ if len(cves) == 0:
 else:
 	print ('\n'.join(cves))
 	if token == '' or telegramid == '':
-		print ('Telegram alert does not sent')
+		print ('Telegram alert was not sent')
 		exit(1)
 	else:
-		urlopen(tfull, tparams)
-		print ('Telegram alert was sent')
-		exit(2)
+		try:
+			urlopen(tfull, tparams)
+			print ('Telegram alert was sent')
+			exit(2)
+		except (HTTPError):
+			print('Telegram alert was not sent, check your token and ID')
+			exit(3)

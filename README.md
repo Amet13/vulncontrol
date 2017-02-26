@@ -12,16 +12,14 @@ Then you can run script in two ways.
 First way without Telegram support:
 ```
 $ ./vulncontrol.py
-You are not using token and ID for Telegram
 CVE-2017-6074 9.3 http://www.cvedetails.com/cve/CVE-2017-6074/
 CVE-2017-6001 7.6 http://www.cvedetails.com/cve/CVE-2017-6001/
 CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
-Telegram alert does not sent
+Telegram alert was not sent
 $ echo $?
 1
 
 $ ./vulncontrol.py
-You are not using token and ID for Telegram
 There is no available vulnerabilities today
 $ echo $?
 0
@@ -33,14 +31,14 @@ Second way with Telegram support:
 * after go to @MyTelegramID_bot and `/start` it
 * then you have your telegram ID like `123456789`
 
-Now you can run script with your data:
+Now you can run script with your token and ID:
 ```
-$ ./vulncontrol.py 111111111:ABCDE 123456789
+$ ./vulncontrol.py -t 111111111:ABCDE -i 123456789
 There is no available vulnerabilities today
 $ echo $?
 0
 
-$ ./vulncontrol.py 111111111:ABCDE 123456789
+$ ./vulncontrol.py -t 111111111:ABCDE -i 123456789
 CVE-2017-6074 9.3 http://www.cvedetails.com/cve/CVE-2017-6074/
 CVE-2017-6001 7.6 http://www.cvedetails.com/cve/CVE-2017-6001/
 CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
@@ -59,7 +57,7 @@ You can add script to you monitoring system (like Nagios/Icinga2, Zabbix, etc) o
 Example for cron:
 ```
 $ crontab -e
-* */12 * * * /usr/bin/python3 /path/to/vulncontrol.py
+* */12 * * * /usr/bin/python3 /path/to/vulncontrol.py -t 111111111:ABCDE -i 123456789
 ```
 
 Exit codes (for monitoring)
@@ -68,8 +66,9 @@ Exit codes (for monitoring)
 | Code | Description                                             |
 | ---- | ------------------------------------------------------- |
 | 0    | There is no available vulnerabilities today             |
-| 1    | Vulnerabilities available, Telegram alert does not sent |
+| 1    | Vulnerabilities available, Telegram alert was not sent  |
 | 2    | Vulnerabilities available, Telegram alert was sent      |
+| 3    | Telegram alert was not sent, check your token and ID    |
 
 Customizing script
 ------------------
