@@ -32,7 +32,7 @@ tcves = [] # Array for Telegram results
 
 numrows = 10 # Maximum rows for one product
 feedlink = 'https://www.cvedetails.com/json-feed.php'
-source = open('productlist.txt', 'r')
+source = open('products.txt', 'r')
 
 # Getting product IDs from file
 for line in source:

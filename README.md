@@ -5,7 +5,7 @@ Python script for monitoring www.cvedetails.com vulnerabilities database.
 Usage
 -----
 
-First go [here](https://www.cvedetails.com/product-search.php), find your software and add links to `productlist.txt`.
+First go [here](https://www.cvedetails.com/product-search.php), find your software and add links to `products.txt`.
 
 Then you can run script in two ways.
 
