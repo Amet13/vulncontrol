@@ -58,7 +58,7 @@ try:
 				jsonp = loads(jsonr.decode('utf-8'))[y]
 				if jsonp['publish_date'] == today:
 					result = jsonp['cve_id'] + ' ' + jsonp['cvss_score'] + ' ' + jsonp['url']
-					tresult = 'CVSS:' + jsonp['cvss_score'] + ' URL: ' + jsonp['url']
+					tresult = 'CVSS: ' + jsonp['cvss_score'] + ' URL: ' + jsonp['url']
 					cves.append(result)
 					tcves.append(tresult)
 			except (IndexError):

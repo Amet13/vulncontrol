@@ -1,0 +1,12 @@
+language: python
+
+python:
+  - "3.6"
+  - "3.6-dev" # 3.6 development branch
+  - "3.7-dev" # 3.7 development branch
+  - "nightly" # currently points to 3.7-dev
+
+# command to run tests
+script:
+  - vulncontrol.py
+  - vulncontrol.py 376032419:AAGef5V0q96x7igp5xxvcFTaOZzGXaMdEfk 281724312
