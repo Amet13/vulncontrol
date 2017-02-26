@@ -67,13 +67,14 @@ except (ValueError, KeyError, TypeError):
 	print ('JSON format error')
 
 # Getting data for Telegram
-tparams = urlencode({'chat_id': telegramid, 'text': tcves}).encode('utf-8')
+fortcves = today + ' report:\n' + '\n'.join(tcves)
+tparams = urlencode({'chat_id': telegramid, 'text': fortcves}).encode('utf-8')
 
 if len(cves) == 0:
 	print ('There is no available vulnerabilities today')
 	exit(0)
 else:
-	print (*cves)
+	print ('\n'.join(cves))
 	if token == '' or telegramid == '':
 		print ('Telegram alert does not sent')
 		exit(1)
