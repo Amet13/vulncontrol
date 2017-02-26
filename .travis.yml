@@ -4,8 +4,11 @@ python:
   - "3.6"
   - "nightly" # currently points to 3.7-dev
 
-# command to run tests
+env:
+  - TOKEN=376032419:AAGef5V0q96x7igp5xxvcFTaOZzGXaMdEfk
+  - ID=281724312
+
 script:
   - cd $TRAVIS_BUILD_DIR
   - ./vulncontrol.py
-  - ./vulncontrol.py 376032419:AAGef5V0q96x7igp5xxvcFTaOZzGXaMdEfk 281724312
+  - ./vulncontrol.py $TOKEN $ID
