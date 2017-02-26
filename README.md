@@ -1,4 +1,4 @@
-vulncontrol
+vulncontrol ![](https://travis-ci.org/Amet13/vulncontrol.svg?branch=master)
 ===========
 Python script for monitoring www.cvedetails.com vulnerabilities database.
 
