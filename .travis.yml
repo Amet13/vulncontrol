@@ -8,5 +8,6 @@ python:
 
 # command to run tests
 script:
-  - vulncontrol.py
-  - vulncontrol.py 376032419:AAGef5V0q96x7igp5xxvcFTaOZzGXaMdEfk 281724312
+  - cd $TRAVIS_BUILD_DIR
+  - ./vulncontrol.py
+  - ./vulncontrol.py 376032419:AAGef5V0q96x7igp5xxvcFTaOZzGXaMdEfk 281724312
