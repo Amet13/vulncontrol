@@ -13,7 +13,9 @@ First way without Telegram support:
 ```
 $ ./vulncontrol.py
 You are not using token and ID for Telegram
-CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/
+CVE-2017-6074 9.3 http://www.cvedetails.com/cve/CVE-2017-6074/
+CVE-2017-6001 7.6 http://www.cvedetails.com/cve/CVE-2017-6001/
+CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
 Telegram alert does not sent
 $ echo $?
 1
@@ -39,7 +41,9 @@ $ echo $?
 0
 
 $ ./vulncontrol.py 111111111:ABCDE 123456789
-CVE-2017-5669 4.6 http://www.cvedetails.com/cve/CVE-2017-5669/
+CVE-2017-6074 9.3 http://www.cvedetails.com/cve/CVE-2017-6074/
+CVE-2017-6001 7.6 http://www.cvedetails.com/cve/CVE-2017-6001/
+CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
 Telegram alert was sent
 $ echo $?
 2
@@ -138,3 +142,4 @@ TODO
 * Log file for vulnerabilities
 * Mark CVE as safety
 * Use more parameters
+* Add more tests and catch exceptions
