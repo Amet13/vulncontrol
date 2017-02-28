@@ -138,4 +138,3 @@ TODO
 * Log file for vulnerabilities
 * Mark CVE as safety
 * Use more parameters
-* Add more tests and catch exceptions
