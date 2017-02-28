@@ -14,7 +14,7 @@ Script parameters:
 
 Then you can run script in two ways.
 
-First way without Telegram support:
+***First way*** without Telegram support:
 ```
 $ ./vulncontrol.py
 There are no available vulnerabilities at 2017-02-28
@@ -26,7 +26,7 @@ CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
 Telegram alert are not sent
 ```
 
-Second way with Telegram support:
+***Second way*** with Telegram support:
 * go to @BotFather and create `/newbot`, for example `VulncontrolBot`
 * then you have token like `111111111:ABCDE...`
 * after go to @MyTelegramID_bot and `/start` it
@@ -44,12 +44,14 @@ CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
 Telegram alert are sent
 ```
 
+Look at your Telegram:
+
 ![](https://raw.githubusercontent.com/Amet13/vulncontrol/master/tscreen.png)
 
 Autorun
 -------
 
-You can add script to you monitoring system (like Nagios/Icinga2, Zabbix, etc) or cron.
+You can add script to you monitoring system (Nagios/Icinga2, Zabbix, etc) or cron.
 
 Example for cron:
 ```
@@ -57,8 +59,8 @@ $ crontab -e
 * */12 * * * /usr/bin/python3 /path/to/vulncontrol.py -t 111111111:ABCDE 123456789 -m 5
 ```
 
-Exit codes (for monitoring)
----------------------------
+Exit codes
+----------
 
 | Code | Description                                                                     |
 | ---- | ------------------------------------------------------------------------------- |
