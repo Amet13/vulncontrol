@@ -11,6 +11,7 @@ Script parameters:
 * `-t` Telegam token (by default no usage)
 * `-i` Telegram ID (by default no usage)
 * `-d` Date in format `YYYY-MM-DD` (by default today)
+* `-m` Min CVSS (by default 0)
 
 Then you can run script in two ways.
 
@@ -19,11 +20,11 @@ First way without Telegram support:
 $ ./vulncontrol.py
 There are no available vulnerabilities at 2017-02-28
 
-$ ./vulncontrol.py -d 2017-02-18
+$ ./vulncontrol.py -d 2017-02-18 -m 5
 CVE-2017-6074 9.3 http://www.cvedetails.com/cve/CVE-2017-6074/
 CVE-2017-6001 7.6 http://www.cvedetails.com/cve/CVE-2017-6001/
 CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
-Telegram alert was not sent
+Telegram alert are not sent
 ```
 
 Second way with Telegram support:
@@ -34,14 +35,14 @@ Second way with Telegram support:
 
 Now you can run script with your token and ID:
 ```
-$ ./vulncontrol.py -t 111111111:ABCDE -i 123456789
+$ ./vulncontrol.py -t 111111111:ABCDE 123456789
 There are no available vulnerabilities at 2017-02-28
 
-$ ./vulncontrol.py -t 111111111:ABCDE -i 123456789 -d 2017-02-18
+$ ./vulncontrol.py -t 111111111:ABCDE 123456789 -d 2017-02-18 -m 5
 CVE-2017-6074 9.3 http://www.cvedetails.com/cve/CVE-2017-6074/
 CVE-2017-6001 7.6 http://www.cvedetails.com/cve/CVE-2017-6001/
 CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
-Telegram alert was sent
+Telegram alert are sent
 ```
 
 ![](https://raw.githubusercontent.com/Amet13/vulncontrol/master/tscreen.png)
@@ -54,18 +55,18 @@ You can add script to you monitoring system (like Nagios/Icinga2, Zabbix, etc) o
 Example for cron:
 ```
 $ crontab -e
-* */12 * * * /usr/bin/python3 /path/to/vulncontrol.py -t 111111111:ABCDE -i 123456789
+* */12 * * * /usr/bin/python3 /path/to/vulncontrol.py -t 111111111:ABCDE 123456789 -m 5
 ```
 
 Exit codes (for monitoring)
 ---------------------------
 
-| Code | Description                                             |
-| ---- | ------------------------------------------------------- |
-| 0    | There is no available vulnerabilities today             |
-| 1    | Vulnerabilities available, Telegram alert was not sent  |
-| 2    | Vulnerabilities available, Telegram alert was sent      |
-| 3    | Telegram alert was not sent, check your token and ID    |
+| Code | Description                                                                     |
+| ---- | ------------------------------------------------------------------------------- |
+| 0    | There are no available vulnerabilities                                          |
+| 1    | Vulnerabilities available, Telegram alert are not sent                          |
+| 2    | Vulnerabilities available, Telegram alert are sent                              |
+| 3    | Vulnerabilities available, Telegram alert are not sent, check your token and ID |
 
 Customizing script
 ------------------
@@ -98,7 +99,7 @@ Example of JSON-output:
 www.cvedetails.com API
 ----------------------
 ```
-curl "https://www.cvedetails.com/json-feed.php?&key1=value1&key2=value2..."
+curl "https://www.cvedetails.com/json-feed.php?key1=value1&key2=value2..."
 ```
 
 Custom parameters:
