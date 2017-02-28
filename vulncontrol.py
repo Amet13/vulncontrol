@@ -11,19 +11,21 @@ import argparse
 
 __author__ = 'Amet13'
 
-# Date format: 2017-01-31
 today = datetime.now().strftime('%Y-%m-%d')
-year = datetime.now().strftime('%Y')
-month = datetime.now().strftime('%m')
 
 # Arguments parsing
 parser = argparse.ArgumentParser()
 parser.add_argument('-t', default='', dest='TOKEN')
 parser.add_argument('-i', default='', dest='ID')
+parser.add_argument('-d', default=today, dest='DATE')
+
 namespace = parser.parse_args()
 
 token = namespace.TOKEN
 telegramid = namespace.ID
+date = namespace.DATE
+year = date.split('-')[0]
+month = date.split('-')[1]
 
 turl = 'https://api.telegram.org/bot'
 tfull = '{0}{1}/sendMessage'.format(turl, token)
@@ -50,7 +52,7 @@ for line in source:
 
 source.close()
 
-# Get JSON for out products today
+# Get JSON for out products by date
 try:
     for x in ids:
         # Link example:
@@ -64,7 +66,7 @@ try:
         for y in range(0, numrows):
             try:
                 jp = loads(jsonr.decode('utf-8'))[y]
-                if jp['publish_date'] == today:
+                if jp['publish_date'] == date:
                     result = '{0} {1} {2}' \
                         .format(jp['cve_id'], jp['cvss_score'], jp['url'])
                     tresult = 'CVSS: {0} URL: {1}' \
@@ -78,11 +80,11 @@ except (ValueError, KeyError, TypeError):
     print('JSON format error')
 
 # Getting data for Telegram
-fortcves = today + ' report:\n' + '\n'.join(tcves)
+fortcves = date + ' report:\n' + '\n'.join(tcves)
 tparams = urlencode({'chat_id': telegramid, 'text': fortcves}).encode('utf-8')
 
 if len(cves) == 0:
-    print('There is no available vulnerabilities today')
+    print('There are no available vulnerabilities at ' + date)
     exit(0)
 else:
     print('\n'.join(cves))

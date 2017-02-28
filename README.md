@@ -7,22 +7,23 @@ Usage
 
 First go [here](https://www.cvedetails.com/product-search.php), find your software and add links to `products.txt`.
 
+Script parameters:
+* `-t` Telegam token (by default no usage)
+* `-i` Telegram ID (by default no usage)
+* `-d` Date in format YYYY-MM-DD (by default today)
+
 Then you can run script in two ways.
 
 First way without Telegram support:
 ```
 $ ./vulncontrol.py
+There are no available vulnerabilities at 2017-02-28
+
+$ ./vulncontrol.py -d 2017-02-18
 CVE-2017-6074 9.3 http://www.cvedetails.com/cve/CVE-2017-6074/
 CVE-2017-6001 7.6 http://www.cvedetails.com/cve/CVE-2017-6001/
 CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
 Telegram alert was not sent
-$ echo $?
-1
-
-$ ./vulncontrol.py
-There is no available vulnerabilities today
-$ echo $?
-0
 ```
 
 Second way with Telegram support:
@@ -34,17 +35,13 @@ Second way with Telegram support:
 Now you can run script with your token and ID:
 ```
 $ ./vulncontrol.py -t 111111111:ABCDE -i 123456789
-There is no available vulnerabilities today
-$ echo $?
-0
+There are no available vulnerabilities at 2017-02-28
 
-$ ./vulncontrol.py -t 111111111:ABCDE -i 123456789
+$ ./vulncontrol.py -t 111111111:ABCDE -i 123456789 -d 2017-02-18
 CVE-2017-6074 9.3 http://www.cvedetails.com/cve/CVE-2017-6074/
 CVE-2017-6001 7.6 http://www.cvedetails.com/cve/CVE-2017-6001/
 CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
 Telegram alert was sent
-$ echo $?
-2
 ```
 
 ![](https://raw.githubusercontent.com/Amet13/vulncontrol/master/tscreen.png)
