@@ -17,12 +17,17 @@ today = datetime.now().strftime('%Y-%m-%d')
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', default=today, dest='DATE')
 parser.add_argument('-m', default='0', dest='MINCVSS')
-parser.add_argument('-t', default='0', dest='TOKENID', nargs=2)
+parser.add_argument('-t', default='', dest='TOKENID', nargs=2)
 
 namespace = parser.parse_args()
 
-token = namespace.TOKENID[0]
-telegramid = namespace.TOKENID[1]
+try:
+    token = namespace.TOKENID[0]
+    telegramid = namespace.TOKENID[1]
+except(IndexError):
+    token = ''
+    telegramid = ''
+
 date = namespace.DATE
 mincvss = namespace.MINCVSS
 
