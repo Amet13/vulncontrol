@@ -5,11 +5,14 @@ python:
   - "nightly" # currently points to 3.7-dev
 
 env:
-  - TOKEN=376032419:AAGef5V0q96x7igp5xxvcFTaOZzGXaMdEfk ID=281724312
+  - TOKEN=376032419:AAGef5V0q96x7igp5xxvcFTaOZzGXaMdEfk ID=281724312 DATE=2017-02-18
 
 script:
   - cd $TRAVIS_BUILD_DIR
   - ./vulncontrol.py
-  - ./vulncontrol.py -d 2017-02-18
   - ./vulncontrol.py -t $TOKEN -i $ID
-  - ./vulncontrol.py -t $TOKEN -i $ID -d 2017-02-18
+  - ./vulncontrol.py -d $DATE ; [[ $? -eq 1 ]]
+  - ./vulncontrol.py -t $TOKEN -d $DATE ; [[ $? -eq 1 ]]
+  - ./vulncontrol.py -i $ID -d $DATE ; [[ $? -eq 1 ]]
+  - ./vulncontrol.py -t $TOKEN -i $ID -d $DATE ; [[ $? -eq 2 ]]
+  - ./vulncontrol.py -t 111:ABC -i 123 -d $DATE ; [[ $? -eq 3 ]]

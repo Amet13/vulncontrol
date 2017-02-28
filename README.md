@@ -10,7 +10,7 @@ First go [here](https://www.cvedetails.com/product-search.php), find your softwa
 Script parameters:
 * `-t` Telegam token (by default no usage)
 * `-i` Telegram ID (by default no usage)
-* `-d` Date in format YYYY-MM-DD (by default today)
+* `-d` Date in format `YYYY-MM-DD` (by default today)
 
 Then you can run script in two ways.
 
