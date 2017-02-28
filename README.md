@@ -8,8 +8,7 @@ Usage
 First go [here](https://www.cvedetails.com/product-search.php), find your software and add links to `products.txt`.
 
 Script parameters:
-* `-t` Telegam token (by default no usage)
-* `-i` Telegram ID (by default no usage)
+* `-t` Telegam token and ID (by default no usage)
 * `-d` Date in format `YYYY-MM-DD` (by default today)
 * `-m` Min CVSS (by default 0)
 
@@ -68,7 +67,7 @@ Exit codes (for monitoring)
 | 2    | Vulnerabilities available, Telegram alert are sent                              |
 | 3    | Vulnerabilities available, Telegram alert are not sent, check your token and ID |
 
-Customizing script
+Customizing output
 ------------------
 
 You can customize `result` with more keys.
@@ -133,9 +132,3 @@ Boolean parameters (0 by default, 1 - yes):
 | opbyp     | 0     | Bypass something           |
 | opginf    | 0     | Gain information           |
 | opdos     | 0     | Denial of service          |
-
-TODO
-----
-* Log file for vulnerabilities
-* Mark CVE as safety
-* Use more parameters
