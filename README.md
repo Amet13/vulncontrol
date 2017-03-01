@@ -5,6 +5,11 @@ Python script for monitoring www.cvedetails.com vulnerabilities database.
 Usage
 -----
 
+```
+$ git clone https://github.com/Amet13/vulncontrol
+$ cd vulncontrol/
+```
+
 First go [here](https://www.cvedetails.com/product-search.php), find your software and add links to `products.txt`.
 
 Script parameters:
@@ -14,7 +19,7 @@ Script parameters:
 
 Then you can run script in two ways.
 
-***First way*** without Telegram support:
+**First way** without Telegram support:
 ```
 $ ./vulncontrol.py
 There are no available vulnerabilities at 2017-02-28
@@ -26,7 +31,7 @@ CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
 Telegram alert are not sent
 ```
 
-***Second way*** with Telegram support:
+**Second way** with Telegram support:
 * go to @BotFather and create `/newbot`, for example `VulncontrolBot`
 * then you have token like `111111111:ABCDE...`
 * after go to @MyTelegramID_bot and `/start` it
