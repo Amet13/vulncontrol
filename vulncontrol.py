@@ -44,7 +44,7 @@ cves = []
 # Array for Telegram results
 tcves = []
 # Maximum rows for one product
-numrows = 10
+numrows = 30
 
 feedlink = 'https://www.cvedetails.com/json-feed.php'
 source = open('products.txt', 'r')
@@ -64,8 +64,8 @@ try:
     for x in ids:
         # Link example:
         # https://www.cvedetails.com/json-feed.php?product_id=47&year=2017&month=02
-        link = '{0}?product_id={1}&year={2}&month={3}&cvssscoremin={4}' \
-            .format(feedlink, x, year, month, mincvss)
+        link = '{0}?product_id={1}&month={2}&year={3}&cvssscoremin={4}&numrows={5}' \
+            .format(feedlink, x, month, year, mincvss, numrows)
 
         # Going to URL and get JSON
         getjson = urlopen(link)
