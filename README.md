@@ -13,8 +13,8 @@ $ cd vulncontrol/
 First go [here](https://www.cvedetails.com/product-search.php), find your software and add links to `products.txt`.
 
 Script parameters:
-* `-t` Telegam token and ID (by default no usage)
-* `-d` Date in format `YYYY-MM-DD` (by default today)
+* `-t` Telegam token and ID (no usage by default)
+* `-d` Date in format `YYYY-MM-DD` (today by default)
 * `-m` Min CVSS (by default 0)
 
 Then you can run script in two ways.
@@ -61,7 +61,7 @@ You can add script to you monitoring system (Nagios/Icinga2, Zabbix, etc) or cro
 Example for cron:
 ```
 $ crontab -e
-* */12 * * * /usr/bin/python3 /path/to/vulncontrol.py -t 111111111:ABCDE 123456789 -m 5
+* */12 * * * /path/to/vulncontrol.py -t 111111111:ABCDE 123456789 -m 5
 ```
 
 Exit codes
@@ -91,9 +91,9 @@ Available keys:
 Example of JSON-output:
 ```
 {
-	"cve_id": "CVE-2017-5551",
-	"cvss_score": "3.6",
-	"cwe_id": "264",
+    "cve_id": "CVE-2017-5551",
+    "cvss_score": "3.6",
+    "cwe_id": "264",
     "exploit_count": "0",
     "publish_date": "2017-02-06",
     "summary": "The simple_set_acl function in fs/posix_acl.c in the Linux kernel before 4.9.6 preserves the setgid bit during a setxattr call involving a tmpfs filesystem, which allows local users to gain group privileges by leveraging the existence of a setgid program with restrictions on execute permissions.  NOTE: this vulnerability exists because of an incomplete fix for CVE-2016-7097.",

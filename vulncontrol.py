@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
+# https://github.com/Amet13/vulncontrol
 
 from sys import exit
 from datetime import datetime
@@ -18,7 +19,6 @@ parser = argparse.ArgumentParser()
 parser.add_argument('-d', default=today, dest='DATE')
 parser.add_argument('-m', default='0', dest='MINCVSS')
 parser.add_argument('-t', default='', dest='TOKENID', nargs=2)
-
 namespace = parser.parse_args()
 
 try:
@@ -30,12 +30,8 @@ except(IndexError):
 
 date = namespace.DATE
 mincvss = namespace.MINCVSS
-
 year = date.split('-')[0]
 month = date.split('-')[1]
-
-turl = 'https://api.telegram.org/bot'
-tfull = '{0}{1}/sendMessage'.format(turl, token)
 
 # Array for product IDs
 ids = []
@@ -46,9 +42,10 @@ tcves = []
 # Maximum rows for one product
 numrows = 30
 
+turl = 'https://api.telegram.org/bot'
+tfull = '{0}{1}/sendMessage'.format(turl, token)
 feedlink = 'https://www.cvedetails.com/json-feed.php'
 source = open('products.txt', 'r')
-
 # Getting product IDs from file
 for line in source:
     if not line.startswith('#') and line.strip():
@@ -56,17 +53,15 @@ for line in source:
         path = parsed[2]
         pathlist = path.split('/')
         ids.append(pathlist[2])
-
 source.close()
 
-# Get JSON for out products by date
+# Get JSON
 try:
     for x in ids:
         # Link example:
-        # https://www.cvedetails.com/json-feed.php?product_id=47&year=2017&month=02
+        # https://www.cvedetails.com/json-feed.php?product_id=47&month=02&year=2017&cvssscoremin=10&numrows=30
         link = '{0}?product_id={1}&month={2}&year={3}&cvssscoremin={4}&numrows={5}' \
             .format(feedlink, x, month, year, mincvss, numrows)
-
         # Going to URL and get JSON
         getjson = urlopen(link)
         jsonr = getjson.read()
@@ -89,6 +84,7 @@ except(ValueError, KeyError, TypeError):
 # Getting data for Telegram
 tdata = '{0} report:\n{1}'.format(date, '\n'.join(tcves))
 tparams = urlencode({'chat_id': telegramid, 'text': tdata}).encode('utf-8')
+
 if len(cves) == 0:
     print('There are no available vulnerabilities at ' + date)
     exit(0)
