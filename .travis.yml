@@ -2,13 +2,13 @@ language: python
 
 python:
   - "3.6"
-  - "nightly" # currently points to 3.7-dev
+  - "nightly"
 
 env:
-  - TOKEN=376032419:AAGef5V0q96x7igp5xxvcFTaOZzGXaMdEfk ID=281724312 DATE=2017-02-18
+  # Add variables TOKEN and ID in TravisCI settings
+  - DATE=2017-02-18
 
 script:
-  - cd $TRAVIS_BUILD_DIR
   - ./vulncontrol.py
   - ./vulncontrol.py -t $TOKEN $ID
   - ./vulncontrol.py -d $DATE ; [[ $? -eq 1 ]]
