@@ -13,7 +13,7 @@ $ cd vulncontrol/
 First go [here](https://www.cvedetails.com/product-search.php), find your software and add links to `products.txt`.
 
 Script parameters:
-* `-t` Telegam token and ID (no usage by default)
+* `-t` Telegram token and ID (no usage by default)
 * `-d` Date in format `YYYY-MM-DD` (today by default)
 * `-m` Min CVSS (by default 0)
 
@@ -32,9 +32,9 @@ Telegram alert are not sent
 ```
 
 **Second way** with Telegram support:
-* go to @BotFather and create `/newbot`, for example `VulncontrolBot`
+* go to [@BotFather](https://t.me/BotFather) and create `/newbot`, for example `VulncontrolBot`
 * then you have token like `111111111:ABCDE...`
-* after go to @MyTelegramID_bot and `/start` it
+* after go to [@MyTelegramID_bot](https://t.me/MyTelegramID_bot) and `/start` it
 * then you have your telegram ID like `123456789`
 
 Now you can run script with your token and ID:
@@ -49,7 +49,7 @@ CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
 Telegram alert are sent
 ```
 
-Look at your Telegram:
+Check your Telegram messages:
 
 ![](https://raw.githubusercontent.com/Amet13/vulncontrol/master/tscreen.png)
 
@@ -67,12 +67,12 @@ $ crontab -e
 Exit codes
 ----------
 
-| Code | Description                                                                     |
-| ---- | ------------------------------------------------------------------------------- |
-| 0    | There are no available vulnerabilities                                          |
-| 1    | Vulnerabilities available, Telegram alert are not sent                          |
-| 2    | Vulnerabilities available, Telegram alert are sent                              |
-| 3    | Vulnerabilities available, Telegram alert are not sent, check your token and ID |
+| Code | Description                                                                 |
+| ---- | --------------------------------------------------------------------------- |
+| 0    | There are no available vulnerabilities                                      |
+| 1    | Vulnerabilities available, Telegram alert not sent                          |
+| 2    | Vulnerabilities available, Telegram alert sent                              |
+| 3    | Vulnerabilities available, Telegram alert not sent, check your token and ID |
 
 Customizing output
 ------------------

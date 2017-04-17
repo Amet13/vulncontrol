@@ -91,13 +91,13 @@ if len(cves) == 0:
 else:
     print('\n'.join(cves))
     if token == '' or telegramid == '':
-        print('Telegram alert are not sent')
+        print('Telegram alert not sent')
         exit(1)
     else:
         try:
             urlopen(tfull, tparams)
-            print('Telegram alert are sent')
+            print('Telegram alert sent')
             exit(2)
         except(HTTPError):
-            print('Telegram alert are not sent, check your token and ID')
+            print('Telegram alert not sent, check your token and ID')
             exit(3)
