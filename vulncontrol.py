@@ -18,15 +18,15 @@ today = datetime.now().strftime('%Y-%m-%d')
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', default=today, dest='DATE')
 parser.add_argument('-m', default='0', dest='MINCVSS')
-parser.add_argument('-t', default='', dest='TOKENID', nargs=2)
+parser.add_argument('-t', default='', dest='TGTOKENID', nargs=2)
 namespace = parser.parse_args()
 
 try:
-    token = namespace.TOKENID[0]
-    telegramid = namespace.TOKENID[1]
+    tgtoken = namespace.TGTOKENID[0]
+    tgid = namespace.TGTOKENID[1]
 except(IndexError):
-    token = ''
-    telegramid = ''
+    tgtoken = ''
+    tgid = ''
 
 date = namespace.DATE
 mincvss = namespace.MINCVSS
@@ -38,12 +38,12 @@ ids = []
 # Array for results
 cves = []
 # Array for Telegram results
-tcves = []
+tgcves = []
 # Maximum rows for one product
 numrows = 30
 
-turl = 'https://api.telegram.org/bot'
-tfull = '{0}{1}/sendMessage'.format(turl, token)
+tgurl = 'https://api.telegram.org/bot'
+tgfull = '{0}{1}/sendMessage'.format(tgurl, tgtoken)
 feedlink = 'https://www.cvedetails.com/json-feed.php'
 source = open('products.txt', 'r')
 # Getting product IDs from file
@@ -75,27 +75,27 @@ try:
                         .format(jp['cvss_score'], jp['url'])
                     # Keep results in arrays
                     cves.append(result)
-                    tcves.append(tresult)
+                    tgcves.append(tresult)
             except(IndexError):
                 break
 except(ValueError, KeyError, TypeError):
     print('JSON format error')
 
 # Getting data for Telegram
-tdata = '{0} report:\n{1}'.format(date, '\n'.join(tcves))
-tparams = urlencode({'chat_id': telegramid, 'text': tdata}).encode('utf-8')
+tgdata = '{0} report:\n{1}'.format(date, '\n'.join(tgcves))
+tgparams = urlencode({'chat_id': tgid, 'text': tgdata}).encode('utf-8')
 
 if len(cves) == 0:
     print('There are no available vulnerabilities at ' + date)
     exit(0)
 else:
     print('\n'.join(cves))
-    if token == '' or telegramid == '':
+    if tgtoken == '' or tgid == '':
         print('Telegram alert not sent')
         exit(1)
     else:
         try:
-            urlopen(tfull, tparams)
+            urlopen(tgfull, tgparams)
             print('Telegram alert sent')
             exit(2)
         except(HTTPError):
