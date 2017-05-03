@@ -17,7 +17,7 @@ today = datetime.now().strftime('%Y-%m-%d')
 # Arguments parsing
 parser = argparse.ArgumentParser()
 parser.add_argument('-d', default=today, dest='DATE')
-parser.add_argument('-m', default='0', dest='MINCVSS')
+parser.add_argument('-m', default='1', dest='MINCVSS')
 parser.add_argument('-t', default='', dest='TGTOKENID', nargs=2)
 namespace = parser.parse_args()
 

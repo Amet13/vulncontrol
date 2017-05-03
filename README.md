@@ -14,7 +14,7 @@ First go [here](https://www.cvedetails.com/product-search.php), find your softwa
 
 Script parameters:
 * `-t` Telegram token and ID (no usage by default)
-* `-d` Date in format `YYYY-MM-DD` (today by default)
+* `-d` Date in format `YYYY-MM-DD` (today by default, it can be incorrectly works with custom data, because cvedetails has bad API)
 * `-m` Min CVSS (by default 0)
 
 Then you can run script in two ways.
