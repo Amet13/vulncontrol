@@ -1,5 +1,8 @@
-vulncontrol ![](https://travis-ci.org/Amet13/vulncontrol.svg?branch=master)
+vulncontrol
 ===========
+
+![](https://travis-ci.org/Amet13/vulncontrol.svg?branch=master)
+
 Python script for monitoring www.cvedetails.com vulnerabilities database.
 
 Usage
@@ -28,7 +31,7 @@ $ ./vulncontrol.py -d 2017-02-18 -m 5
 CVE-2017-6074 9.3 http://www.cvedetails.com/cve/CVE-2017-6074/
 CVE-2017-6001 7.6 http://www.cvedetails.com/cve/CVE-2017-6001/
 CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
-Telegram alert are not sent
+Telegram alert not sent
 ```
 
 **Second way** with Telegram support:
@@ -46,7 +49,7 @@ $ ./vulncontrol.py -t 111111111:ABCDE 123456789 -d 2017-02-18 -m 5
 CVE-2017-6074 9.3 http://www.cvedetails.com/cve/CVE-2017-6074/
 CVE-2017-6001 7.6 http://www.cvedetails.com/cve/CVE-2017-6001/
 CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
-Telegram alert are sent
+Telegram alert sent
 ```
 
 Check your Telegram messages:

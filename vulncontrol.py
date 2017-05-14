@@ -10,8 +10,6 @@ from urllib.error import HTTPError
 from json import loads
 import argparse
 
-__author__ = 'Amet13'
-
 today = datetime.now().strftime('%Y-%m-%d')
 
 # Arguments parsing
@@ -33,12 +31,10 @@ mincvss = namespace.MINCVSS
 year = date.split('-')[0]
 month = date.split('-')[1]
 
-# Array for product IDs
 ids = []
-# Array for results
 cves = []
-# Array for Telegram results
 tgcves = []
+
 # Maximum rows for one product
 numrows = 30
 
@@ -46,6 +42,7 @@ tgurl = 'https://api.telegram.org/bot'
 tgfull = '{0}{1}/sendMessage'.format(tgurl, tgtoken)
 feedlink = 'https://www.cvedetails.com/json-feed.php'
 source = open('products.txt', 'r')
+
 # Getting product IDs from file
 for line in source:
     if not line.startswith('#') and line.strip():
