@@ -1,9 +1,7 @@
-vulncontrol
+vulncontrol [![TravisCI](https://travis-ci.org/Amet13/vulncontrol.svg?branch=master)](https://travis-ci.org/Amet13/vulncontrol/)
 ===========
 
-![](https://travis-ci.org/Amet13/vulncontrol.svg?branch=master)
-
-Python script for monitoring www.cvedetails.com vulnerabilities database.
+Python script for monitoring www.cvedetails.com vulnerabilities database
 
 Usage
 -----
