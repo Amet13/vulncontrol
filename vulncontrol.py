@@ -5,7 +5,7 @@
 from sys import exit
 from datetime import datetime
 from urllib.parse import urlparse, urlencode
-from urllib.request import urlopen
+from urllib.request import urlopen, Request
 from urllib.error import HTTPError
 from json import loads
 import argparse
@@ -60,7 +60,7 @@ try:
         link = '{0}?product_id={1}&month={2}&year={3}&cvssscoremin={4}&numrows={5}' \
             .format(feedlink, x, month, year, mincvss, numrows)
         # Going to URL and get JSON
-        getjson = urlopen(link)
+        getjson = urlopen(Request(link, headers={'User-Agent': 'Mozilla'}))
         jsonr = getjson.read()
         for y in range(0, numrows):
             try:
