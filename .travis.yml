@@ -6,7 +6,7 @@ python:
 
 env:
   # Add variables TOKEN and ID in TravisCI settings
-  - DATE=2017-04-23
+  - DATE=2018-06-05
 
 script:
   - ./vulncontrol.py
