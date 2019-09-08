@@ -20,7 +20,7 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Test with pytest
       env:
-        DATE=2018-06-05
+        DATE: 2018-06-05
       run: |
         ./vulncontrol.py
         ./vulncontrol.py -t $TOKEN $ID
