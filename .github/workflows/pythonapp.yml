@@ -20,9 +20,9 @@ jobs:
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Tests
       env:
-        DATE: "2018-06-05"
+        DATE: "2019-09-04"
       run: |
-        echo "Test withour sending message:"
+        echo "Test without sending message:"
         ./vulncontrol.py
         echo "Test with TG credentials:"
         ./vulncontrol.py -t ${{ secrets.TOKEN }} ${{ secrets.ID }}

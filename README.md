@@ -1,4 +1,4 @@
-# vulncontrol
+# vulncontrol [![Actions Status](https://github.com/Amet13/vulncontrol/workflows/pythonapp/badge.svg)](https://github.com/Amet13/vulncontrol/actions)
 
 Python script for monitoring www.cvedetails.com vulnerabilities database
 
@@ -29,7 +29,7 @@ $ ./vulncontrol.py -d 2017-02-18 -m 5
 CVE-2017-6074 9.3 http://www.cvedetails.com/cve/CVE-2017-6074/
 CVE-2017-6001 7.6 http://www.cvedetails.com/cve/CVE-2017-6001/
 CVE-2017-5986 7.1 http://www.cvedetails.com/cve/CVE-2017-5986/
-Telegram alert not sent
+Telegram alert did not sent
 ```
 
 **Second way** with Telegram support:
@@ -72,9 +72,9 @@ $ crontab -e
 | Code | Description                                                                 |
 | ---- | --------------------------------------------------------------------------- |
 | 0    | There are no available vulnerabilities                                      |
-| 1    | Vulnerabilities available, Telegram alert not sent                          |
+| 1    | Vulnerabilities available, Telegram alert did not sent                          |
 | 2    | Vulnerabilities available, Telegram alert sent                              |
-| 3    | Vulnerabilities available, Telegram alert not sent, check your token and ID |
+| 3    | Vulnerabilities available, Telegram alert did not sent, check your token and ID |
 
 ## Customizing output
 

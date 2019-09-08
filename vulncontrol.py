@@ -88,7 +88,7 @@ if len(cves) == 0:
 else:
     print('\n'.join(cves))
     if tgtoken == '' or tgid == '':
-        print('Telegram alert not sent')
+        print('Telegram alert did not sent')
         exit(1)
     else:
         try:
