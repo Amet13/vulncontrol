@@ -1,4 +1,4 @@
-# vulncontrol [![Actions Status](https://github.com/Amet13/vulncontrol/workflows/pythonapp/badge.svg)](https://github.com/Amet13/vulncontrol/actions)
+# vulncontrol [![Actions Status](https://github.com/Amet13/vulncontrol/workflows/vulncontrol/badge.svg)](https://github.com/Amet13/vulncontrol/actions)
 
 Python script for monitoring www.cvedetails.com vulnerabilities database
 
