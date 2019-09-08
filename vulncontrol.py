@@ -83,7 +83,7 @@ tgdata = '{0} report:\n{1}'.format(date, '\n'.join(tgcves))
 tgparams = urlencode({'chat_id': tgid, 'text': tgdata}).encode('utf-8')
 
 if len(cves) == 0:
-    print('There are no available vulnerabilities at ' + date)
+    print('There are no available vulnerabilities on ' + date)
     exit(0)
 else:
     print('\n'.join(cves))
@@ -96,5 +96,5 @@ else:
             print('Telegram alert sent')
             exit(2)
         except(HTTPError):
-            print('Telegram alert not sent, check your token and ID')
+            print('Telegram alert did not sent, check your token and ID')
             exit(3)
