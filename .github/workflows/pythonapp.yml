@@ -22,6 +22,7 @@ jobs:
       env:
         DATE: "2019-09-04"
       run: |
+        set +e
         echo "Test without sending message:"
         ./vulncontrol.py
         echo "Test with TG credentials:"
