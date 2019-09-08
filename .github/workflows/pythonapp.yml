@@ -1,4 +1,4 @@
-name: Python application
+name: Vulncontrol
 
 on: [push]
 
@@ -13,17 +13,17 @@ jobs:
       uses: actions/setup-python@v1
       with:
         python-version: 3.7
-    - name: Lint with flake8
+    - name: Linter
       run: |
         pip install flake8
         flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
         flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
-    - name: Test with pytest
+    - name: Tests
       env:
-        DATE: 2018-06-05
+        DATE: "2018-06-05"
       run: |
         ./vulncontrol.py
-        ./vulncontrol.py -t $TOKEN $ID
-        ./vulncontrol.py -d $DATE ; [[ $? -eq 1 ]]
-        ./vulncontrol.py -t $TOKEN $ID -d $DATE ; [[ $? -eq 2 ]]
-        ./vulncontrol.py -t 111:ABC 123 -d $DATE ; [[ $? -eq 3 ]]
+        ./vulncontrol.py -t ${TOKEN} ${ID}
+        ./vulncontrol.py -d ${DATE} ; [[ $? -eq 1 ]]
+        ./vulncontrol.py -t ${TOKEN} ${ID} -d ${DATE} ; [[ $? -eq 2 ]]
+        ./vulncontrol.py -t 111:ABC 123 -d ${DATE} ; [[ $? -eq 3 ]]

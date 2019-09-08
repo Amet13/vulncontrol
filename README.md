@@ -1,10 +1,8 @@
-vulncontrol [![TravisCI](https://travis-ci.org/Amet13/vulncontrol.svg?branch=master)](https://travis-ci.org/Amet13/vulncontrol/)
-===========
+# vulncontrol
 
 Python script for monitoring www.cvedetails.com vulnerabilities database
 
-Usage
------
+## Usage
 
 ```
 $ git clone https://github.com/Amet13/vulncontrol
@@ -14,6 +12,7 @@ $ cd vulncontrol/
 First go [here](https://www.cvedetails.com/product-search.php), find your software and add links to `products.txt`.
 
 Script parameters:
+
 * `-t` Telegram token and ID (no usage by default)
 * `-d` Date in format `YYYY-MM-DD` (today by default, it can be incorrectly works with custom data, because cvedetails has bad API)
 * `-m` Min CVSS (by default 0)
@@ -21,6 +20,7 @@ Script parameters:
 Then you can run script in two ways.
 
 **First way** without Telegram support:
+
 ```
 $ ./vulncontrol.py
 There are no available vulnerabilities at 2017-02-28
@@ -33,12 +33,14 @@ Telegram alert not sent
 ```
 
 **Second way** with Telegram support:
+
 * go to [@BotFather](https://t.me/BotFather) and create `/newbot`, for example `VulncontrolBot`
 * then you have token like `111111111:ABCDE...`
 * after go to [@MyTelegramID_bot](https://t.me/MyTelegramID_bot) and `/start` it
 * then you have your telegram ID like `123456789`
 
 Now you can run script with your token and ID:
+
 ```
 $ ./vulncontrol.py -t 111111111:ABCDE 123456789
 There are no available vulnerabilities at 2017-02-28
@@ -54,19 +56,18 @@ Check your Telegram messages:
 
 ![](https://raw.githubusercontent.com/Amet13/vulncontrol/master/tscreen.png)
 
-Autorun
--------
+## Autorun
 
 You can add script to you monitoring system (Nagios/Icinga2, Zabbix, etc) or cron.
 
 Example for cron:
+
 ```
 $ crontab -e
 * */12 * * * /path/to/vulncontrol.py -t 111111111:ABCDE 123456789 -m 5
 ```
 
-Exit codes
-----------
+## Exit codes
 
 | Code | Description                                                                 |
 | ---- | --------------------------------------------------------------------------- |
@@ -75,11 +76,11 @@ Exit codes
 | 2    | Vulnerabilities available, Telegram alert sent                              |
 | 3    | Vulnerabilities available, Telegram alert not sent, check your token and ID |
 
-Customizing output
-------------------
+## Customizing output
 
 You can customize `result` with more keys.
 Available keys:
+
 * `cve_id`
 * `cvss_score`
 * `cwe_id`
@@ -90,6 +91,7 @@ Available keys:
 * `url`
 
 Example of JSON-output:
+
 ```
 {
     "cve_id": "CVE-2017-5551",
@@ -103,8 +105,8 @@ Example of JSON-output:
 }
 ```
 
-www.cvedetails.com API
-----------------------
+# www.cvedetails.com API
+
 ```
 curl "https://www.cvedetails.com/json-feed.php?key1=value1&key2=value2..."
 ```
