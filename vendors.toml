@@ -1,4 +1,5 @@
 date = "2010-01-02"
+min_cvss = 9.0
 
 [vendors]
 # Use "all" if you want to use all products for the vendor
