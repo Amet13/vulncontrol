@@ -12,5 +12,5 @@ Install rust:
 curl https://sh.rustup.rs -sSf | sh
 git clone https://github.com/Amet13/cve-cli.git
 cd cve-cli/
-cargo run
+cargo run -- --help
 ```

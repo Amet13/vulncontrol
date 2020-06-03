@@ -8,7 +8,6 @@ extern crate serde_derive;
 
 use clap::{App, Arg, crate_name, crate_version, crate_authors, crate_description};
 use ansi_term::Colour;
-//use serde_json::Value;
 
 pub static API_URL: &'static str = "https://cve.circl.lu/api";
 
@@ -18,9 +17,10 @@ struct VendorsAll {
 }
 
 fn main() {
-    let conflicts_all_vendors = ["vendor-name", "cve-id"];
-    let conflicts_vendor_name = ["all-vendors", "cve-id"];
-    let conflicts_cve_id = ["all-vendors", "vendor-name"];
+    let conflicts_all_vendors = ["vendor-name", "cve-id", "config"];
+    let conflicts_vendor_name = ["all-vendors", "cve-id", "config"];
+    let conflicts_cve_id = ["all-vendors", "vendor-name", "config"];
+    let conflicts_config = ["all-vendors", "vendor-name", "cve-id"];
 
     let matches = App::new(crate_name!())
         .version(crate_version!())
@@ -40,10 +40,17 @@ fn main() {
             .help("Show all products for vendor"))
         .arg(Arg::with_name("cve-id")
             .long("cve")
-            .short("c")
+            .short("i")
             .takes_value(true)
             .conflicts_with_all(&conflicts_cve_id)
             .help("Show info for CVE (example: --cve CVE-2010-3333)"))
+        .arg(Arg::with_name("config")
+            .long("config")
+            .short("c")
+            .takes_value(true)
+            .conflicts_with_all(&conflicts_config)
+            .default_value("vendors.toml")
+            .help("Config path"))
         .get_matches();
 
     if matches.is_present("all-vendors") {
@@ -52,6 +59,8 @@ fn main() {
         show_products_by_vendor(vendor_name.to_string());
     } else if let Some(cve_id) = matches.value_of("cve-id") {
         show_cve_info(cve_id.to_string());
+    } else if let Some(config) = matches.value_of("config") {
+        parse_config(config.to_string());
     } else {
         println!("{}", Colour::Red.bold().paint("Something went wrong"));
     }
@@ -86,4 +95,8 @@ fn show_products_by_vendor(vendor_name: String) {
 
 fn show_cve_info(cve_id: String) {
     println!("CVE is: {}", cve_id);
+}
+
+fn parse_config(config: String) {
+    println!("Config path is: {}", config);
 }
