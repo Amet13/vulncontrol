@@ -27,5 +27,6 @@ cargo run -- --help
 ## TODO
 
 - MVP
+- Unit tests
 - GitHub Actions
 - Asciicinema

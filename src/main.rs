@@ -61,7 +61,7 @@ fn main() {
     } else if let Some(config) = matches.value_of("config") {
         parse_config(config.to_string());
     } else {
-        println!("{}", Colour::Red.bold().paint("Something went wrong"));
+        println!("{}", Colour::Red.bold().paint("Something went wrong, use --help flag"));
     }
 }
 
