@@ -2,6 +2,8 @@ extern crate clap;
 extern crate ansi_term;
 extern crate reqwest;
 extern crate serde_json;
+
+#[macro_use]
 extern crate serde_derive;
 
 use clap::{App, Arg, crate_name, crate_version, crate_authors, crate_description};
@@ -47,8 +49,7 @@ fn main() {
             .short("c")
             .takes_value(true)
             .conflicts_with_all(&conflicts_config)
-            .default_value("vendors.toml")
-            .help("Config path"))
+            .help("Config path (example: --vendors.toml"))
         .get_matches();
 
     if matches.is_present("all-vendors") {
