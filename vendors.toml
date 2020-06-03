@@ -1,0 +1,10 @@
+[vendors]
+# Use "all" if you want to use all products for the vendor
+apple = "all"
+apprain = "all"
+google = [
+    "android",
+    "bionic",
+    "monorail",
+    "pixel"
+]
