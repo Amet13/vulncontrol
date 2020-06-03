@@ -2,8 +2,6 @@ extern crate clap;
 extern crate ansi_term;
 extern crate reqwest;
 extern crate serde_json;
-
-#[macro_use]
 extern crate serde_derive;
 
 use clap::{App, Arg, crate_name, crate_version, crate_authors, crate_description};
