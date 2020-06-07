@@ -8,13 +8,9 @@ extern crate serde_derive;
 
 use clap::{App, Arg, crate_name, crate_version, crate_authors, crate_description};
 use ansi_term::Colour;
+use serde_json::{Deserializer, Value};
 
-pub static API_URL: &'static str = "https://cve.circl.lu/api";
-
-#[derive(Serialize, Deserialize, Debug)]
-struct VendorsAll {
-    data: String,
-}
+pub static API_URL: &'static str = "https://cve.circl.lu/api";xw
 
 fn main() {
     let conflicts_all_vendors = ["vendor-name", "cve-id", "config"];
@@ -53,7 +49,8 @@ fn main() {
         .get_matches();
 
     if matches.is_present("all-vendors") {
-        show_all_vendors().ok();
+        show_all_vendors()
+            .ok();
     } else if let Some(vendor_name) = matches.value_of("vendor-name") {
         show_products_by_vendor(vendor_name.to_string());
     } else if let Some(cve_id) = matches.value_of("cve-id") {
@@ -71,20 +68,6 @@ fn show_all_vendors() -> Result<(), Box<dyn std::error::Error>> {
     let url_all_vendors = format!("{}/browse", API_URL);
     let output_all_vendors = reqwest::blocking::get(&url_all_vendors)?
         .text()?;
-    //let vendors_json: Value = serde_json::from_str(&output_all_vendors)?;
-
-    let array: Vec<VendorsAll> = serde_json::from_str(&output_all_vendors)?;
-    println!("dsds");
-    println! ("{:?}", array);
-    //for elem in array.iter() {
-    //    println!("{:?}", elem.unwrap());
-    //}
-    //for (key, value) in vendors_json["vendor"].as_object().unwrap() {
-    //    println!("key: {}; value: {}", key.to_string(), value.to_string());
-    //}
-
-    //println!("{}", vendors_json["vendor"].as_object().unwrap());
-    //println!("dsd");
     Ok(())
 }
 
